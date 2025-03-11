@@ -1,0 +1,203 @@
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    text-align: center;
+    padding: 20px;
+}
+
+/* Wrapper */
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Card Info */
+.card-info {
+    width: 350px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.card-info:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+.card-info h1 {
+    font-size: 22px;
+    color: #ff5722;
+    margin-bottom: 15px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Label and Value Styles */
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.8s ease-in-out;
+}
+
+/* Last field removes bottom border */
+.field:last-child {
+    border-bottom: none;
+}
+
+/* Label Styling */
+.label {
+    font-weight: bold;
+    color: #ff6f00;
+}
+
+/* Value Styling */
+span[id] {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Button Styling */
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(255, 118, 136, 0.3);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effect */
+button:hover {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(255, 118, 136, 0.4);
+}
+
+/* Button Click Animation */
+button:active {
+    transform: scale(0.95);
+}
+
+/* Button Bounce Animation */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+    50% { transform: translateY(0); }
+    70% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+
+button:hover {
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* Enter Details Button */
+.enter-btn {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+}
+
+.enter-btn:hover {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    transform: scale(1.05);
+}
+
+/* Clear Data Button */
+.clear-btn {
+    background: linear-gradient(135deg, #ff4747, #ff6b6b);
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.clear-btn:hover {
+    background: linear-gradient(135deg, #ff6b6b, #ff4747);
+    transform: scale(1.05);
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 400px) {
+    .card-info {
+        width: 95vw;
+        padding: 10px;
+    }
+
+    .field {
+        font-size: 14px;
+    }
+
+    .card-info h1 {
+        font-size: 18px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
