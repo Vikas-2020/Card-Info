@@ -184,7 +184,7 @@ button:hover {
 /* Responsive Design */
 @media screen and (max-width: 400px) {
     .card-info {
-        width: 95vw;
+        width: 90vw;
         padding: 10px;
     }
 
