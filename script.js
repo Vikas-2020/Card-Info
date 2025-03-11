@@ -13,7 +13,7 @@ const storedInfo = localStorage.getItem("userInformation");
 if (storedInfo) {
   const userInfo = JSON.parse(storedInfo);
 
-  // Display info
+  // Display stored user information
   fname.innerText = userInfo.firstName;
   lname.innerText = userInfo.lastName;
   country.innerText = userInfo.country;
@@ -22,7 +22,7 @@ if (storedInfo) {
   city.innerText = userInfo.city;
   village.innerText = userInfo.village;
 
-  // Add a Clear Data button to delete stored data
+  // Add Clear Data button
   const clearBtn = document.createElement("button");
   clearBtn.innerText = "Clear Data";
   clearBtn.classList.add("clear-btn");
@@ -30,44 +30,70 @@ if (storedInfo) {
 
   clearBtn.addEventListener("click", () => {
     localStorage.removeItem("userInformation");
-    location.reload(); // Refresh page to clear displayed data
+    location.reload(); // Refresh to remove displayed data
   });
-
 } else {
-  // Create an "Enter Your Details" button
+  // Create "Enter Your Details" button
   const btn = document.createElement("button");
   btn.innerText = "Enter Your Details";
   btn.classList.add("enter-btn");
   wrapper.appendChild(btn);
 
-  btn.addEventListener("click", storeUserInfo);
+  btn.addEventListener("click", () => {
+    btn.remove(); // Remove the button when input fields are displayed
+    showInputFields();
+  });
 }
 
-// Function to store information in local storage
-function storeUserInfo() {
-  const firstName = prompt("Enter your first name:");
-  const lastName = prompt("Enter your last name:");
-  const userCountry = prompt("Enter your country:");
-  const phoneNumber = prompt("Enter your phone number:");
-  const userState = prompt("Enter your state:");
-  const userCity = prompt("Enter your city:");
-  const userVillage = prompt("Enter your village:");
+// Function to create input fields dynamically
+function showInputFields() {
+  const fields = [
+    { id: "first-name", label: "First Name" },
+    { id: "last-name", label: "Last Name" },
+    { id: "country", label: "Country" },
+    { id: "phone-number", label: "Phone Number" },
+    { id: "state", label: "State" },
+    { id: "city", label: "City" },
+    { id: "village", label: "Village" },
+  ];
 
-  if (!firstName || !lastName || !userCountry || !phoneNumber || !userState || !userCity || !userVillage) {
+  fields.forEach(field => {
+    const span = document.getElementById(field.id);
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = `Enter ${field.label}`;
+    input.classList.add("input-field");
+    input.setAttribute("id", `input-${field.id}`);
+    span.replaceWith(input); // Replace span with input field
+  });
+
+  // Add Save button
+  const saveBtn = document.createElement("button");
+  saveBtn.innerText = "Save Details";
+  saveBtn.classList.add("save-btn");
+  wrapper.appendChild(saveBtn);
+
+  saveBtn.addEventListener("click", saveUserInfo);
+}
+
+// Function to save user data
+function saveUserInfo() {
+  const userInfo = {
+    firstName: document.getElementById("input-first-name").value.trim(),
+    lastName: document.getElementById("input-last-name").value.trim(),
+    country: document.getElementById("input-country").value.trim(),
+    phoneNumber: document.getElementById("input-phone-number").value.trim(),
+    state: document.getElementById("input-state").value.trim(),
+    city: document.getElementById("input-city").value.trim(),
+    village: document.getElementById("input-village").value.trim(),
+  };
+
+  // Check if all fields are filled
+  if (Object.values(userInfo).some(value => value === "")) {
     alert("All fields are required!");
     return;
   }
 
-  const userInfo = {
-    firstName,
-    lastName,
-    country: userCountry,
-    phoneNumber,
-    state: userState,
-    city: userCity,
-    village: userVillage,
-  };
-
   localStorage.setItem("userInformation", JSON.stringify(userInfo));
-  location.reload(); // Refresh page to update UI
+  location.reload(); // Refresh page to display saved data
 }
